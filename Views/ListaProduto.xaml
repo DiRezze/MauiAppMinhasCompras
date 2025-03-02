@@ -3,10 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
              Title="ListaProduto">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to the mato"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ListView x:Name="ListaProdutos"
+                  ItemsSource="{Binding Produtos}"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Descricao}" FontSize="20" />
+                            <Label Text="{Binding Quantidade, StringFormat='Quantidade: {0:F2}'}" />
+                            <Label Text="{Binding Preco, StringFormat='Preço: {0:C}'}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
