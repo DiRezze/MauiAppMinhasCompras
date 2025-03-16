@@ -5,30 +5,20 @@ namespace MauiAppMinhasCompras.Views;
 
 public partial class ListaProduto : ContentPage
 {
-    public ObservableCollection<Produto> Produtos { get; set; }
-	public ListaProduto()
+    public ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
+    public ListaProduto()
 	{
 		InitializeComponent();
-        Produtos = new ObservableCollection<Produto>();
-        BindingContext = this;
+        Produtos.ItemsSource = produtos;
     }
     protected override async void OnAppearing()
     {
+        List<Produto> tmp = await ((App)Application.Current).Db.GetAll();
+        tmp.ForEach(i=>produtos.Add(i));
+
         base.OnAppearing();
-        await CarregarProdutos();
     }
 
-    private async Task CarregarProdutos()
-    {
-        var db = ((App)Application.Current).Db;
-        var lista = await db.GetAll();
-
-        Produtos.Clear();
-        foreach (var produto in lista)
-        {
-            Produtos.Add(produto);
-        }
-    }
     private void ToolbarItem_Clicked(object sender, EventArgs e)
     {
         try
@@ -41,4 +31,5 @@ public partial class ListaProduto : ContentPage
             DisplayAlert("Ops", ex.Message, "OK");
         }
     }
+
 }

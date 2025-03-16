@@ -4,24 +4,50 @@
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
              Title="ListaProduto">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Somar"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
     <VerticalStackLayout>
-        <ListView x:Name="ListaProdutos"
-                  ItemsSource="{Binding Produtos}"
-                  HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Descricao}" FontSize="20" />
-                            <Label Text="{Binding Quantidade, StringFormat='Quantidade: {0:F2}'}" />
-                            <Label Text="{Binding Preco, StringFormat='Preço: {0:C}'}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+
+        <VerticalStackLayout Padding="10">
+            <SearchBar x:Name="txt_search" Placeholder="Buscar produtos..." Text="{Binding Pesquisa}"/>
+        </VerticalStackLayout>
+
+        <Frame Margin="8"
+               BackgroundColor="{StaticResource Gray900}">
+            <VerticalStackLayout>
+                <ListView x:Name="Produtos"
+                          HasUnevenRows="True">
+                    <ListView.Header>
+                        <Grid ColumnDefinitions="*, *, *, *, *, *">
+                            <Label FontAttributes="Bold" Grid.Column="0" Text="ID" />
+                            <Label FontAttributes="Bold" Grid.Column="1" Text="Descrição" />
+                            <Label FontAttributes="Bold" Grid.Column="2" Text="Preço" />
+                            <Label FontAttributes="Bold" Grid.Column="3" Text="Qnt" />
+                            <Label FontAttributes="Bold" Grid.Column="4" Text="Total" />
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Remover"/>
+                                </ViewCell.ContextActions>
+                                <Grid ColumnDefinitions="*, *, *, *, *, *">
+                                    <Label Grid.Column="0" Text="{Binding Id}" />
+                                    <Label Grid.Column="1" Text="{Binding Descricao}" />
+                                    <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{0:C}'}" />
+                                    <Label Grid.Column="3" Text="{Binding Quantidade}" />
+                                    <Label Grid.Column="4" Text="{Binding Total, StringFormat='{0:C}'}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </VerticalStackLayout>
+        </Frame>
+
     </VerticalStackLayout>
 </ContentPage>
