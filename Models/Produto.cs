@@ -14,6 +14,7 @@ namespace MauiAppMinhasCompras.Models
         public string Descricao { get; set; } = string.Empty;
         public double Quantidade { get; set; }
         public double Preco { get; set; }
+        public double Total { get => Quantidade * Preco; }
 
         public Produto() { }
 
