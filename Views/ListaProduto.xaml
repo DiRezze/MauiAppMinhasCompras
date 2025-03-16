@@ -35,7 +35,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
-                                    <MenuItem Text="Remover"/>
+                                    <MenuItem Text="Remover" Clicked="Remove_Clicked"/>
                                 </ViewCell.ContextActions>
                                 <Grid ColumnDefinitions="*, *, *, *, *, *">
                                     <Label Grid.Column="0" Text="{Binding Id}" />
