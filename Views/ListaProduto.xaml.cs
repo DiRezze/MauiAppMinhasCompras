@@ -46,4 +46,14 @@ public partial class ListaProduto : ContentPage
 
     }
 
+    private void Somar_Clicked(object sender, EventArgs e)
+    {
+        double soma = lista.Sum(i => i.Total);
+
+        string msg = $"O total é {soma:C}";
+
+        DisplayAlert("Total dos Produtos", msg, "OK");
+    }
+
+    
 }

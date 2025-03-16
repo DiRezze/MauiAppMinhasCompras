@@ -4,7 +4,7 @@
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
              Title="ListaProduto">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Somar"/>
+        <ToolbarItem Text="Somar" Clicked="Somar_Clicked"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
