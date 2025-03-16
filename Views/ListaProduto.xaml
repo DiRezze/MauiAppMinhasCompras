@@ -11,7 +11,10 @@
     <VerticalStackLayout>
 
         <VerticalStackLayout Padding="10">
-            <SearchBar x:Name="txt_search" Placeholder="Buscar produtos..." Text="{Binding Pesquisa}"/>
+            <SearchBar x:Name="txt_search" 
+                       Placeholder="Buscar produtos..."
+                       Text="{Binding Pesquisa}"
+                       TextChanged="txt_search_TextChanged"/>
         </VerticalStackLayout>
 
         <Frame Margin="8"
