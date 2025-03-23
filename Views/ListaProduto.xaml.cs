@@ -14,11 +14,17 @@ public partial class ListaProduto : ContentPage
 
     protected override async void OnAppearing()
     {
-        lista.Clear();
+        try
+        {
+            lista.Clear();
 
-        List<Produto> tmp = await ((App)Application.Current).Db.GetAll();
+            List<Produto> tmp = await ((App)Application.Current).Db.GetAll();
 
-        tmp.ForEach(i=>lista.Add(i));
+            tmp.ForEach(i=>lista.Add(i));
+        } catch (Exception ex)
+        {
+            await DisplayAlert("Ops!", ex.Message, "Ok");
+        }
     }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -36,13 +42,20 @@ public partial class ListaProduto : ContentPage
 
     private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
     {
-        string q = e.NewTextValue;
+        try
+        {
+            string q = e.NewTextValue;
 
-        lista.Clear();
+            lista.Clear();
 
-        List<Produto> tmp = await ((App)Application.Current).Db.Search(q);
+            List<Produto> tmp = await ((App)Application.Current).Db.Search(q);
 
-        tmp.ForEach(i => lista.Add(i));
+            tmp.ForEach(i => lista.Add(i));
+
+        } catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
 
     }
 
