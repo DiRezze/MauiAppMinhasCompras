@@ -91,4 +91,30 @@ public partial class ListaProduto : ContentPage
         }
     }
 
+    private async void Edit_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            MenuItem menuItem = sender as MenuItem;
+            Produto produto = menuItem?.BindingContext as Produto;
+
+            if (produto != null)
+            {
+                await Navigation.PushAsync(new Views.EditarProduto
+                {
+                    BindingContext = produto
+                });
+            } else 
+            { 
+                await DisplayAlert("Ops", "Produto não encontrado", "OK"); 
+            }
+
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+
 }
