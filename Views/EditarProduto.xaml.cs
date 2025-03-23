@@ -26,13 +26,11 @@ public partial class EditarProduto : ContentPage
 
             await ((App)Application.Current).Db.Update(p);
             await DisplayAlert("Sucesso!", "Registro atualizado", "OK");
+            Navigation.PopAsync();
         }
         catch (Exception ex)
         {
             DisplayAlert("Ops", ex.Message, "OK");
-        } finally
-        {
-            Navigation.PopAsync();
         }
 
     }
